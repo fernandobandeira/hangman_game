@@ -18,7 +18,8 @@ defmodule Umbrella.MixProject do
   # Run "mix help deps" for examples and options.
   defp deps do
     [
-      {:excoveralls, "~> 0.12", only: [:test]}
+      {:excoveralls, "~> 0.12", only: [:test]},
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
     ]
   end
 end
