@@ -18,8 +18,6 @@ defmodule Hangman.MixProject do
   end
 
   defp deps do
-    [
-      { :dictionary, path: "../dictionary" }
-    ]
+    []
   end
 end

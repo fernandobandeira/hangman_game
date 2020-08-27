@@ -18,8 +18,6 @@ defmodule TextClient.MixProject do
   end
 
   defp deps do
-    [
-      { :hangman, path: "../hangman" }
-    ]
+    []
   end
 end
