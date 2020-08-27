@@ -7,7 +7,7 @@ defmodule TextClient.Interact do
 
   def start do
     new_game()
-    |>setup_state()
+    |> setup_state()
     |> Player.play()
   end
 
