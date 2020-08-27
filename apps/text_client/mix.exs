@@ -24,6 +24,8 @@ defmodule TextClient.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:hangman, in_umbrella: true}
+    ]
   end
 end

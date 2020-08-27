@@ -24,6 +24,8 @@ defmodule Hangman.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:dictionary, in_umbrella: true}
+    ]
   end
 end
