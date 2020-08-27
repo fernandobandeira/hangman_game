@@ -18,6 +18,7 @@ defmodule Hangman.MixProject do
 
   def application do
     [
+      mod: {Hangman.Application, []},
       extra_applications: [:logger]
     ]
   end
