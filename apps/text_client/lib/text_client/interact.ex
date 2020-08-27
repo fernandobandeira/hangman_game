@@ -2,11 +2,12 @@ defmodule TextClient.Interact do
   @moduledoc """
   This module launches a new game and initialize the state
   """
+  @hangman_server :"hangman@fernandos-mbp"
   alias TextClient.{Player, State}
 
   def start do
-    Hangman.new_game()
-    |> setup_state()
+    new_game()
+    |>setup_state()
     |> Player.play()
   end
 
@@ -15,5 +16,10 @@ defmodule TextClient.Interact do
       game_service: game,
       tally: Hangman.tally(game)
     }
+  end
+
+  defp new_game do
+    Node.connect(@hangman_server)
+    :rpc.call(@hangman_server, Hangman, :new_game, [])
   end
 end
