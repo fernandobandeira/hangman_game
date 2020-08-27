@@ -39,40 +39,35 @@ defmodule GameTest do
         Game.new_game()
         |> Map.put(:game_state, state)
 
-      assert ^game = Game.make_move(game, "x")
+      assert {^game, _tally} = Game.make_move(game, "x")
     end
   end
 
   test "first occurrence of letter is not already used" do
     game = Game.new_game()
-    game = Game.make_move(game, "x")
+    {game, _tally} = Game.make_move(game, "x")
     assert game.game_state != :already_used
   end
 
   test "second occurrence of letter is already used" do
     game = Game.new_game()
-    game = Game.make_move(game, "x")
+    {game, _tally} = Game.make_move(game, "x")
     assert game.game_state != :already_used
-    game = Game.make_move(game, "x")
+    {game, _tally} = Game.make_move(game, "x")
     assert game.game_state == :already_used
   end
 
   test "a good guess is recognized" do
     game = Game.new_game("wibble")
-    game = Game.make_move(game, "w")
+    {game, tally} = Game.make_move(game, "w")
 
     assert game.game_state == :good_guess
     assert game.turns_left == 7
-
-    tally = Game.tally(game)
-
     assert tally.turns_left == game.turns_left
     assert tally.game_state == :good_guess
-
     assert tally.used ==
              MapSet.new()
              |> MapSet.put("w")
-
     assert tally.letters == ["w", "_", "_", "_", "_", "_"]
   end
 
@@ -88,7 +83,7 @@ defmodule GameTest do
     game = Game.new_game("wibble")
 
     Enum.reduce(moves, game, fn {guess, state}, game ->
-      game = Game.make_move(game, guess)
+      {game, _tally} = Game.make_move(game, guess)
       assert game.game_state == state
       game
     end)
@@ -96,20 +91,15 @@ defmodule GameTest do
 
   test "a bad guess is recognized" do
     game = Game.new_game("wibble")
-    game = Game.make_move(game, "x")
+    {game, tally} = Game.make_move(game, "x")
 
     assert game.game_state == :bad_guess
     assert game.turns_left == 6
-
-    tally = Game.tally(game)
-
     assert tally.turns_left == game.turns_left
     assert tally.game_state == :bad_guess
-
     assert tally.used ==
              MapSet.new()
              |> MapSet.put("x")
-
     assert tally.letters == ["_", "_", "_", "_", "_", "_"]
   end
 
@@ -129,17 +119,13 @@ defmodule GameTest do
     moves
     |> Enum.with_index()
     |> Enum.reduce(game, fn {{guess, state}, index}, game ->
-      game = Game.make_move(game, guess)
+      {game, tally} = Game.make_move(game, guess)
       assert game.game_state == state
       assert game.turns_left == 7 - (index + 1)
-
-      tally = Game.tally(game)
-
       assert tally.turns_left == game.turns_left
       assert tally.game_state == state
       assert tally.used == game.used
       assert tally.letters == ["_", "_", "_", "_", "_", "_"]
-
       game
     end)
   end
