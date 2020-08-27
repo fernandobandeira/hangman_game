@@ -2,9 +2,15 @@ defmodule Dictionary.WordList do
   @moduledoc """
   This module reads a word list and chooses a word randomly
   """
-  def random_word(word_list) do
-    word_list
-    |> Enum.random()
+
+  @me __MODULE__
+
+  def start_link do
+    Agent.start_link(&word_list/0, name: @me)
+  end
+
+  def random_word do
+    Agent.get(@me, &Enum.random/1)
   end
 
   def word_list do
