@@ -53,6 +53,7 @@ jobs:
     container:
       image: elixir:1.9.1-slim
     needs: test
+    steps:
       - name: Checkout repository
         uses: actions/checkout@v1
 
