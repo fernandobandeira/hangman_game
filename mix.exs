@@ -19,7 +19,8 @@ defmodule Umbrella.MixProject do
   defp deps do
     [
       {:excoveralls, "~> 0.12", only: [:test]},
-      {:credo, "~> 1.4", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:pre_commit, "~> 0.2.4", only: :dev}
     ]
   end
 end

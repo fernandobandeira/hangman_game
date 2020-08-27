@@ -9,6 +9,8 @@
 # move said applications out of the umbrella.
 import Config
 
+config :pre_commit, commands: ["credo", "coveralls"]
+
 # Sample configuration:
 #
 #     config :logger, :console,
