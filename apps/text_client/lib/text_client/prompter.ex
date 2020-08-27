@@ -1,4 +1,7 @@
 defmodule TextClient.Prompter do
+  @moduledoc """
+  This module asks the user to enter his next guess
+  """
   alias TextClient.State
 
   def accept_move(state = %State{}) do
@@ -18,12 +21,12 @@ defmodule TextClient.Prompter do
 
   defp check_input(input, state) do
     input = String.trim(input)
-    cond do
-      input =~ ~r/\A[a-z]\z/ ->
-        Map.put(state, :guess, input)
-      true ->
-        IO.puts("please enter a single lowercase letter")
-        accept_move(state)
+
+    if input =~ ~r/\A[a-z]\z/ do
+      Map.put(state, :guess, input)
+    else
+      IO.puts("please enter a single lowercase letter")
+      accept_move(state)
     end
   end
 end
