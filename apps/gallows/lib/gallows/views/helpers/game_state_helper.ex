@@ -1,4 +1,4 @@
-defmodule GallowsWeb.Views.Helpers.GameStateHelper do
+defmodule Gallows.Views.Helpers.GameStateHelper do
 
   import Phoenix.HTML, only: [ raw: 1 ]
 

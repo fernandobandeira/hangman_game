@@ -9,17 +9,11 @@
 # move said applications out of the umbrella.
 use Mix.Config
 
-
-
-config :gallows_web,
-  generators: [context_app: :gallows]
-
 # Configures the endpoint
-config :gallows_web, GallowsWeb.Endpoint,
+config :gallows, Gallows.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "41w1VC+Ccdw5amqL0NC2yXPfpAPuFbuztD/zSpixrN7HeBCXqcXB91QUKzQ44wua",
-  render_errors: [view: GallowsWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Gallows.PubSub,
+  render_errors: [view: Gallows.ErrorView, accepts: ~w(html json), layout: false],
   live_view: [signing_salt: "wkpEHvsy"]
 
 # Configures Elixir's Logger

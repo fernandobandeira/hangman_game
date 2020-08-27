@@ -7,12 +7,24 @@ defmodule Gallows.Application do
 
   def start(_type, _args) do
     children = [
-      # Start the PubSub system
-      {Phoenix.PubSub, name: Gallows.PubSub}
+      # Start the Telemetry supervisor
+      Gallows.Telemetry,
+      # Start the Endpoint (http/https)
+      Gallows.Endpoint
       # Start a worker by calling: Gallows.Worker.start_link(arg)
       # {Gallows.Worker, arg}
     ]
 
-    Supervisor.start_link(children, strategy: :one_for_one, name: Gallows.Supervisor)
+    # See https://hexdocs.pm/elixir/Supervisor.html
+    # for other strategies and supported options
+    opts = [strategy: :one_for_one, name: Gallows.Supervisor]
+    Supervisor.start_link(children, opts)
+  end
+
+  # Tell Phoenix to update the endpoint configuration
+  # whenever the application is updated.
+  def config_change(changed, _new, removed) do
+    Gallows.Endpoint.config_change(changed, removed)
+    :ok
   end
 end

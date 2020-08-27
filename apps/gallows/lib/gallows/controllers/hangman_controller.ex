@@ -1,5 +1,5 @@
-defmodule GallowsWeb.HangmanController do
-  use GallowsWeb, :controller
+defmodule Gallows.HangmanController do
+  use Gallows, :controller
 
   def new_game(conn, _params) do
     render(conn, "new_game.html")

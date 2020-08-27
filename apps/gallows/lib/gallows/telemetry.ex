@@ -1,4 +1,4 @@
-defmodule GallowsWeb.Telemetry do
+defmodule Gallows.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -42,7 +42,7 @@ defmodule GallowsWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {GallowsWeb, :count_users, []}
+      # {Gallows, :count_users, []}
     ]
   end
 end

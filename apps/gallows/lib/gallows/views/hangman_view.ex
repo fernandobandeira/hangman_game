@@ -1,7 +1,7 @@
-defmodule GallowsWeb.HangmanView do
-  use GallowsWeb, :view
+defmodule Gallows.HangmanView do
+  use Gallows, :view
 
-  import GallowsWeb.Views.Helpers.GameStateHelper
+  import Gallows.Views.Helpers.GameStateHelper
 
   def turn(left, target) when target >= left do
     "opacity: 1"

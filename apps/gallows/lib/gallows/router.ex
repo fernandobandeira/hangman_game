@@ -1,5 +1,5 @@
-defmodule GallowsWeb.Router do
-  use GallowsWeb, :router
+defmodule Gallows.Router do
+  use Gallows, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,7 +13,7 @@ defmodule GallowsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/hangman", GallowsWeb do
+  scope "/hangman", Gallows do
     pipe_through :browser
 
     get "/", HangmanController, :new_game
@@ -22,7 +22,7 @@ defmodule GallowsWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", GallowsWeb do
+  # scope "/api", Gallows do
   #   pipe_through :api
   # end
 
@@ -38,7 +38,7 @@ defmodule GallowsWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: GallowsWeb.Telemetry
+      live_dashboard "/dashboard", metrics: Gallows.Telemetry
     end
   end
 end

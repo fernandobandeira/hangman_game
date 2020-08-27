@@ -1,16 +1,16 @@
-defmodule GallowsWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :gallows_web
+defmodule Gallows.Endpoint do
+  use Phoenix.Endpoint, otp_app: :gallows
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_gallows_web_key",
+    key: "_gallows_key",
     signing_salt: "Ztt5vH4O"
   ]
 
-  socket "/socket", GallowsWeb.UserSocket,
+  socket "/socket", Gallows.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -22,7 +22,7 @@ defmodule GallowsWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :gallows_web,
+    from: :gallows,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -49,5 +49,5 @@ defmodule GallowsWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug GallowsWeb.Router
+  plug Gallows.Router
 end
