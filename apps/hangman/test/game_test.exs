@@ -65,9 +65,11 @@ defmodule GameTest do
     assert game.turns_left == 7
     assert tally.turns_left == game.turns_left
     assert tally.game_state == :good_guess
+
     assert tally.used ==
              MapSet.new()
              |> MapSet.put("w")
+
     assert tally.letters == ["w", "_", "_", "_", "_", "_"]
   end
 
@@ -97,9 +99,11 @@ defmodule GameTest do
     assert game.turns_left == 6
     assert tally.turns_left == game.turns_left
     assert tally.game_state == :bad_guess
+
     assert tally.used ==
              MapSet.new()
              |> MapSet.put("x")
+
     assert tally.letters == ["_", "_", "_", "_", "_", "_"]
   end
 
