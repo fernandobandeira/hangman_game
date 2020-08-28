@@ -6,5 +6,9 @@ config :gallows, Gallows.Endpoint,
   http: [port: 4002],
   server: false
 
+config :socket_gallows, SocketGallowsWeb.Endpoint,
+  http: [port: 4003],
+  server: false
+
 # Print only warnings and errors during test
 config :logger, level: :warn

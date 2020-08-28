@@ -1,9 +1,9 @@
-defmodule Gallows.MixProject do
+defmodule SocketGallows.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :gallows,
+      app: :socket_gallows,
       version: "0.1.0",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
@@ -23,7 +23,7 @@ defmodule Gallows.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Gallows.Application, []},
+      mod: {SocketGallows.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -51,6 +51,9 @@ defmodule Gallows.MixProject do
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
+  # For example, to install project dependencies and perform other setup tasks, run:
+  #
+  #     $ mix setup
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do

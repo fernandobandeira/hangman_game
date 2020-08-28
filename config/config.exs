@@ -14,7 +14,16 @@ config :gallows, Gallows.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "41w1VC+Ccdw5amqL0NC2yXPfpAPuFbuztD/zSpixrN7HeBCXqcXB91QUKzQ44wua",
   render_errors: [view: Gallows.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Gallows.PubSub,
   live_view: [signing_salt: "wkpEHvsy"]
+
+  # Configures the endpoint
+config :socket_gallows, SocketGallowsWeb.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "SYHeuI19T3drjJTaAzxYG+VkpFqi9zq9IiRaHlSUHHxASd1grWBj0i+tJiZFLYI/",
+  render_errors: [view: SocketGallowsWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: SocketGallows.PubSub,
+  live_view: [signing_salt: "36+tTGZw"]
 
 # Configures Elixir's Logger
 config :logger, :console,
